@@ -22,3 +22,10 @@
     cursor: pointer;
     color: white;
 }
+.message
+{
+    color:green;
+    font-family: inherit;
+    font-size: 30px;
+    font-style: italic;
+}
