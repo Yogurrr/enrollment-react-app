@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import EnrollmentForm from "./components/EnrollmentForm";
+import EnrollList from "./components/EnrollList";
 
 // EnrollmentForm이라는 폼을 return하도록 정의된 App 컴퍼넌트
 const App = () => {
@@ -24,7 +25,7 @@ const App = () => {
         <div className="App">
             <div className="programs">
                 <h3 className="title"> 프로그램 참가 등록 양식 </h3>
-                <ul className="ulEnroll">
+                <ul className="ulEnrol">
                     <li onChange={handleChange} className="parentLabels">
                         <input type="radio" value="UG" name="programGroup" defaultChecked />학사 과정&nbsp;
                         <input type="radio" value="PG" name="programGroup" />석사 과정
@@ -35,6 +36,7 @@ const App = () => {
             <EnrollmentForm choosenProgram={program}
                             currentSeat={program === 'UG' ? ugSeats : pgSeats}
                             setUpdateSeats={setUpdateSeats} />
+            <EnrollList />
         </div>
     );
     };
