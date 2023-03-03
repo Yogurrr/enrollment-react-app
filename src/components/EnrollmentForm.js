@@ -13,6 +13,8 @@ const EnrollmentForm = (prop) => {
     // 등록하기 버튼 클릭 시 이름/성을 환영메시지로 만들어 폼 아래 쪽에 나타냄
     const handleSubmit = (e) => {
         setWelcomeMessage(`환영합니다 ${firstName} ${lastName}님!!`);
+        // props로 전달 받은 함수 setUpdateSeats를 이용해서 상위 컴퍼넌트의 변수 값을 조작함
+        prop.setUpdateSeats(prop.currentSeat - 1);   // 참여 가능 인원 수 감소
         e.preventDefault();   // submit 기능 전파 중지
     };
     return (
