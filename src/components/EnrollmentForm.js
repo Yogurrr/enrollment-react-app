@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import '../App.css';
 
-const EnrollmentForm = () => {
+const EnrollmentForm = (prop) => {
     // 폼에 입력한 이름/성을 기억하게 위해 state형 변수 선언
     // onBlur 이벤트 발생 시 입력한 이름/성을 firstName, lastName 변수에 저장
     const [firstName, setFirstName] = useState("");   // 인풋 태그에 작성했던 내용을 폼에 저장하기 위해
@@ -18,7 +18,7 @@ const EnrollmentForm = () => {
     return (
         <div>
             <form className="enrolForm" onSubmit={handleSubmit}>
-                <h1>대학생 등록 양식</h1>
+                <h1>{prop.choosenProgram} 대학생 등록 양식</h1>
                 <div><label>First Name</label>
                     <input type="text" name="fname"
                            onBlur={ (e) => setFirstName(e.target.value) } /></div>

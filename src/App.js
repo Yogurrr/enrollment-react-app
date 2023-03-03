@@ -1,11 +1,22 @@
-import React from "react";
+import React, {useState} from "react";
 import EnrollmentForm from "./components/EnrollmentForm";
 
 // EnrollmentForm이라는 폼을 return하도록 정의된 App 컴퍼넌트
 const App = () => {
+    const [program, setProgram] = useState("UG");
+    const handleChange = (e) => {
+        setProgram(e.target.value)
+    };
     return (
-        <div>
-            <EnrollmentForm />
+        <div className="App">
+            <div className="programs">
+                <label>프로그램 종류 : </label>
+                <select className="appDropDowns" onChange={handleChange} value={program}>
+                    <option value="UG">학사 과정(대학생)</option>
+                    <option value="PG">석사 과정(대학원생)</option>
+                </select>
+            </div>
+            <EnrollmentForm choosenProgram={program}/>
         </div>
     );
 };
