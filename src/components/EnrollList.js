@@ -1,5 +1,5 @@
 import React from 'react';
-// import './EnrolList.css';
+import '../EnrolList.css';
 import { DetailsList } from '@fluentui/react/lib/DetailsList';
 
 // 과정 등록 학생 리스트 컬럼 정의 (이름, 성, 과정, 이메일)
@@ -18,10 +18,10 @@ const columns = [
     }
 ]
 
-// 테스트용 데이터 삽입
+// 테스트용 데이터 삽입 - 컬ㄹ럼 정의 시 사용했던 fieldName으로 값 초기화
 let items = [];
 for (let i = 1; i <= 5; ++i ) {
-    let data = {key: i, fname: 'FirstName'+i, lname: 'LastName'+i, program: 'UG', email: 'Email'+i}
+    let data = { key: i, fname: 'FirstName' + i, lname: 'LastName' + i, program: 'UG', email: 'Email'+ i }
     items.push(data);
 }
 const EnrollList = () => {
