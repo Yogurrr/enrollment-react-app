@@ -1,13 +1,17 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import EnrollmentForm from "./components/EnrollmentForm";
-import EnrollList from "./components/EnrollList";
+import EnrolList from "./components/EnrolList";
 
-// EnrollmentForm이라는 폼을 return하도록 정의된 App 컴퍼넌트
+// EnrollmentForm이라는 폼을 return하도록 정의된 App 컴퍼넌
+// 트
 const App = () => {
     const [program, setProgram] = useState("UG");   // 프로그램 종류
-    // const [seats, setSeats] = useState(100);   // 참가 가능 인원 수
     const [ugSeats, setUgSeats] = useState(60);
     const [pgSeats, setPgSeats] = useState(40);
+
+    // 과정 등록한 학생 정보를 저장하는 변수 선언
+    const [studDetails, setStudDetails] = useState({});
+
     const handleChange = (e) => {
         setProgram(e.target.value)
     };
@@ -35,8 +39,10 @@ const App = () => {
             </div>
             <EnrollmentForm choosenProgram={program}
                             currentSeat={program === 'UG' ? ugSeats : pgSeats}
-                            setUpdateSeats={setUpdateSeats} />
-            <EnrollList />
+                            setUpdateSeats={setUpdateSeats} setStudDetails={setStudDetails} />
+
+            <EnrolList studDetails={studDetails} setStudDetails={setStudDetails}/>
+            {/*<EnrolList studDetails={studDetails} setStudDetails={setStudDetails} />*/}
         </div>
     );
     };
