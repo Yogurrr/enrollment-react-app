@@ -11,6 +11,7 @@ const App = () => {
 
     // 과정 등록한 학생 정보를 저장하는 변수 선언
     const [studDetails, setStudDetails] = useState({});
+    console.log(studDetails);
 
     const handleChange = (e) => {
         setProgram(e.target.value)
