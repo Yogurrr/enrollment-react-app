@@ -19,6 +19,7 @@ const App = () => {
             setPgSeats(modifySeat);
         }
     }
+
     return (
         <div className="App">
             <div className="programs">
@@ -34,11 +35,12 @@ const App = () => {
                 <br/><br/><br/>
             </div>
             <EnrollmentForm choosenProgram={program}
-                            currentSeat={program === 'UG'? ugSeats : pgSeats}
+                            currentSeat={program === 'UG' ? ugSeats : pgSeats}
                             setUpdateSeats={setUpdateSeats} />
         </div>
     );
-};
+    };
+
 
 // 컴퍼넌트나 모듈 형태로 작성하는 경우
 // 기본적으로 내보내기할 함수명 지정

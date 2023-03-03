@@ -25,9 +25,11 @@
 .message
 {
     color:green;
-    font-family: inherit;
     font-size: 30px;
     font-style: italic;
+    padding-top: 45px;
+    padding-left: 120px;
+    display: flex;
 }
 .App {
     font-family: sans-serif;
@@ -47,4 +49,12 @@
     font-family: inherit;
     font-size: inherit;
     margin-left: 10px;
+}
+.redOne {
+    color: red;
+    font-size: 35px;
+    font-style: italic;
+    padding-top: 45px;
+    padding-left: 120px;
+    display: flex;
 }
