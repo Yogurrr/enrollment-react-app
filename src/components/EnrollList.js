@@ -1,5 +1,5 @@
 import React from 'react';
-import './EnrolList.css';
+// import './EnrolList.css';
 import { DetailsList } from '@fluentui/react/lib/DetailsList';
 
 // 과정 등록 학생 리스트 컬럼 정의 (이름, 성, 과정, 이메일)
