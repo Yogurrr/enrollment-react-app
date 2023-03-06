@@ -16,7 +16,7 @@ const EnrollmentForm = (props) => {
 
     // 등록/수정 버튼 정의
     const [btnValue, setBtnValue] = useState("등록하기");
-    const [studKey, setStudKey] = useState(0);
+    const [studKey, setStudKey] = useState(0);   // 수정 시 rndkey 대신 사용
 
     const handleEdit = (key, program) => {
         // 수정할 학생 정보를 폼에 표시
@@ -43,6 +43,8 @@ const EnrollmentForm = (props) => {
 
             // 등록 완료된 학생정보에 사용할 key 생성
             const rndKey = Math.floor(1000 + Math.random() * 9000);
+            // 이렇게 생성된 무작위 숫자는 학생 정보 등록 시 고유한 key 값으로 사용되어,
+            // 학생 정보 수정 및 삭제 기능에서 식별자 역할을 함
 
             // 학생 정보 등록 시 rndkey를, 학생 정보 수정 시 studKey를 사용하도록 함
             const key = btnValue === '등록하기' ? rndKey : studKey;
@@ -57,7 +59,7 @@ const EnrollmentForm = (props) => {
             props.setStudDetails(stud);
         }
         setWelcomeMessage(msg);
-        e.preventDefault();   // submit 기능 전파 중지
+        e.preventDefault();   // submit 기능 전파 중지, 이벤트를 취소하는 메서드
     };
     const handleInputChange = (setInput, e) => {
         setInput(e.target.value)
