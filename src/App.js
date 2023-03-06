@@ -56,7 +56,7 @@ const App = () => {
                             handleItemSelection={handleItemSelection} />
 
             <EnrolList studDetails={studDetails} setStudDetails={setStudDetails} selectedItemKey={selectItemKey}
-                       action={action} restoreSeats={restoreSeats} />
+                       action={action} restoreSeats={restoreSeats} setAction={setAction} />
         </div>
     );
     };
