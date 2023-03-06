@@ -11,11 +11,11 @@ const App = () => {
 
     // 과정 등록한 학생 정보를 저장하는 변수 선언
     const [studDetails, setStudDetails] = useState({});
-    console.log(studDetails);
 
-    const handleChange = (e) => {
-        setProgram(e.target.value)
-    };
+    const [action, setAction] = useState();   // 작업 종류 지정
+    const [selectItemKey, setSelItemKey] = useState();   // 등록정보 키
+
+    const handleChange = (e) => { setProgram(e.target.value) };
 
     // 프로그램 참가 가능 인원 수를 변경하는 함수
     const setUpdateSeats = (modifySeat) => {
@@ -24,6 +24,12 @@ const App = () => {
         } else {
             setPgSeats(modifySeat);
         }
+    }
+
+    // 작업 종류, 키 설정 함수
+    const handleItemSelection = (action, key) => {
+        setAction(action);
+        setSelItemKey(key);
     }
 
     return (
@@ -38,11 +44,12 @@ const App = () => {
                     <li>{program} 참가 가능 인원 : { (program === 'UG') ? ugSeats : pgSeats }</li>
                 </ul>
             </div>
-            <EnrollmentForm choosenProgram={program}
-                            currentSeat={program === 'UG' ? ugSeats : pgSeats}
-                            setUpdateSeats={setUpdateSeats} setStudDetails={setStudDetails} />
+            <EnrollmentForm choosenProgram={program} currentSeat={program === 'UG' ? ugSeats : pgSeats}
+                            setUpdateSeats={setUpdateSeats} setStudDetails={setStudDetails}
+                            handleItemSelection={handleItemSelection} />
 
-            <EnrolList studDetails={studDetails} setStudDetails={setStudDetails}/>
+            <EnrolList studDetails={studDetails} setStudDetails={setStudDetails} selectedItemKey={selectItemKey}
+                       action={action} />
         </div>
     );
     };

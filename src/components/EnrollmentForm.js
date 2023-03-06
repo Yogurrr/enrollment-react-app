@@ -28,7 +28,10 @@ const EnrollmentForm = (props) => {
             // 생성한 key와 등록 완료된 학생정보를 props에 저장
             let stud = {
                 key: rndKey, fname: firstName, lname: lastName, program: props.choosenProgram,
-                email: email, edit: <MdEdit className="actionIcon" />, delete: <MdDelete className="actionIcon" />
+                email: email,
+                edit: <MdEdit className="actionIcon" onClick={ () => props.handleItemSelection('edit', rndKey) } />,
+                // 삭제 아이콘 클릭 시 대상 학생 정보의 키를 넘김
+                delete: <MdDelete className="actionIcon" onClick={() => props.handleItemSelection('delete', rndKey)} />
             }
             props.setStudDetails(stud);
         }
