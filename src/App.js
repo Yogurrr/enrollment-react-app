@@ -32,6 +32,13 @@ const App = () => {
         setSelItemKey(key);
     }
 
+    // 등록 학생 삭제나 수정 시 참가 가능 인원 수 재수정
+    const restoreSeats = (pgm) => {
+        pgm === 'UG' ? setUgSeats(ugSeats + 1) :
+            setPgSeats(pgSeats + 1);
+        setAction('');
+    }
+
     return (
         <div className="App">
             <div className="programs">
@@ -49,7 +56,7 @@ const App = () => {
                             handleItemSelection={handleItemSelection} />
 
             <EnrolList studDetails={studDetails} setStudDetails={setStudDetails} selectedItemKey={selectItemKey}
-                       action={action} />
+                       action={action} restoreSeats={restoreSeats} />
         </div>
     );
     };
