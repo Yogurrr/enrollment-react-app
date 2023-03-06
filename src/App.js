@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import EnrollmentForm from "./components/EnrollmentForm";
 import EnrolList from "./components/EnrolList";
 
-// EnrollmentForm이라는 폼을 return하도록 정의된 App 컴퍼넌
-// 트
+// EnrollmentForm이라는 폼을 return하도록 정의된 App 컴퍼넌트
 const App = () => {
     const [program, setProgram] = useState("UG");   // 프로그램 종류
     const [ugSeats, setUgSeats] = useState(60);
@@ -11,6 +10,7 @@ const App = () => {
 
     // 과정 등록한 학생 정보를 저장하는 변수 선언
     const [studDetails, setStudDetails] = useState({});
+    // 여기서 {}는 빈 객체(empty object)를 뜻함
 
     const [action, setAction] = useState();   // 작업 종류 지정
     const [selectItemKey, setSelItemKey] = useState();   // 등록정보 키
@@ -80,6 +80,7 @@ const App = () => {
 
             <EnrolList studDetails={studDetails} setStudDetails={setStudDetails} selectedItemKey={selectItemKey}
                        action={action} restoreSeats={restoreSeats} setAction={setAction} />
+            {/* <EnrollmentForm />와 <EnrolList />는 컴포넌트를 불러오는 구문 */}
         </div>
     );
     };

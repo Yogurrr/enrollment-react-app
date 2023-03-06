@@ -3,6 +3,7 @@ import { MdEdit, MdDelete } from 'react-icons/md';
 import '../App.css';
 
 const EnrollmentForm = (props) => {
+    // 즉, props는 부모 컴포넌트에서 자식 컴포넌트로 데이터를 전달하기 위한 객체입니다.
     // 폼에 입력한 이름/성/이메일을 기억하게 위해 state형 변수 선언
     // onChange 이벤트 발생 시 입력한 이름/성/이메일을 firstName, lastName, email 변수에 저장
     const [firstName, setFirstName] = useState("");   // 인풋 태그에 작성했던 내용을 폼에 저장하기 위해
@@ -35,6 +36,7 @@ const EnrollmentForm = (props) => {
         if (props.currentSeat - 1 >= 0) {
             // props로 전달 받은 함수 setUpdateSeats를 이용해서 상위 컴퍼넌트의 변수 값을 조작함
             props.setUpdateSeats(props.currentSeat - 1);   // 참여 가능 인원 수 감소
+            // 여기서 currentSeat은 UG를 골랐으면 usSeats PG를 골랐으면 pgSeats
             setMsgStyle('message');
             msg = `환영합니다 ${firstName} ${lastName}님!!\n
             ${email}로 등록 관련 정보를 발송해드렸습니다.`;
