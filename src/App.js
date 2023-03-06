@@ -15,7 +15,21 @@ const App = () => {
     const [action, setAction] = useState();   // 작업 종류 지정
     const [selectItemKey, setSelItemKey] = useState();   // 등록정보 키
 
-    const handleChange = (e) => { setProgram(e.target.value) };
+    // 라디오 버튼 체크 상태 처리, 초기값은 true로 설정
+    const [isUgChecked, setIsUgChecked] = useState(true);
+    // (삭제나 수정 시) 인원 수 조정 필요 여부 설정, 초기값은 false로 설정
+    const [isRestoreSeats, setIsRestoreSeats] = useState(false);
+
+
+    const handleChange = (e) => {
+        setProgram(e.target.value);
+        // 참가 프로그램이 혹시라도 변경됐다면
+        setIsUgChecked(!isUgChecked);
+        if (isRestoreSeats) {   // 변경 전 인원 수를 원래대로 복원
+            e.target.value === 'UG' ? setPgSeats(pgSeats + 1) : setUgSeats(ugSeats + 1);
+            setIsRestoreSeats(false);
+        }
+    };
 
     // 프로그램 참가 가능 인원 수를 변경하는 함수
     const setUpdateSeats = (modifySeat) => {
@@ -39,21 +53,30 @@ const App = () => {
         setAction('');
     }
 
+    // 수정 시 참가 프로그램 변경 시 인원수 재수정
+    const setReSelectProgram = (selProgram) => {
+        selProgram === 'UG' ? setIsUgChecked(true) : setIsUgChecked(false);
+        setProgram(selProgram);
+        setIsRestoreSeats(true);
+    }
+
     return (
         <div className="App">
             <div className="programs">
                 <h3 className="title"> 프로그램 참가 등록 양식 </h3>
                 <ul className="ulEnrol">
                     <li onChange={handleChange} className="parentLabels">
-                        <input type="radio" value="UG" name="programGroup" defaultChecked />학사 과정&nbsp;
-                        <input type="radio" value="PG" name="programGroup" />석사 과정
+                        <input type="radio" value="UG" name="programGroup"
+                               defaultChecked={isUgChecked} />학사 과정&nbsp;
+                        <input type="radio" value="PG" name="programGroup"
+                               defaultChecked={!isUgChecked} />석사 과정
                     </li>
                     <li>{program} 참가 가능 인원 : { (program === 'UG') ? ugSeats : pgSeats }</li>
                 </ul>
             </div>
-            <EnrollmentForm choosenProgram={program} currentSeat={program === 'UG' ? ugSeats : pgSeats}
+            <EnrollmentForm chosenProgram={program} currentSeat={program === 'UG' ? ugSeats : pgSeats}
                             setUpdateSeats={setUpdateSeats} setStudDetails={setStudDetails}
-                            handleItemSelection={handleItemSelection} />
+                            handleItemSelection={handleItemSelection} setReSelectProgram={setReSelectProgram} />
 
             <EnrolList studDetails={studDetails} setStudDetails={setStudDetails} selectedItemKey={selectItemKey}
                        action={action} restoreSeats={restoreSeats} setAction={setAction} />
