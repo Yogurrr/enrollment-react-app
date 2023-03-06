@@ -1,5 +1,5 @@
-import React from "react";
-import { useState } from "react";
+import { React, useState } from "react";
+import { MdEdit, MdDelete } from 'react-icons/md';
 import '../App.css';
 
 const EnrollmentForm = (props) => {
@@ -27,7 +27,8 @@ const EnrollmentForm = (props) => {
             const rndKey = Math.floor(1000 + Math.random() * 9000);
             // 생성한 key와 등록 완료된 학생정보를 props에 저장
             let stud = {
-                key: rndKey, fname: firstName, lname: lastName, program: props.choosenProgram, email: email
+                key: rndKey, fname: firstName, lname: lastName, program: props.choosenProgram,
+                email: email, edit: <MdEdit className="actionIcon" />, delete: <MdDelete className="actionIcon" />
             }
             props.setStudDetails(stud);
         }

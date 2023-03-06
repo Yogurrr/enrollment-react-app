@@ -4,7 +4,11 @@ import { DetailsList } from '@fluentui/react/lib/DetailsList';
 import { useEffect } from "react";
 
 // 과정 등록 학생 리스트 컬럼 정의 (이름, 성, 과정, 이메일)
+// 리스트 앞 뒤로 수정, 삭제 버튼 추가
 const columns = [
+    {
+        key: 'edit', name: "수정", fieldName: "edit", minWidth: "50", isResizeable: false
+    },
     {
         key: 'fname', name: 'First Name', fieldName: 'fname', minWidth: 90, isResizeable: false
     },
@@ -16,6 +20,9 @@ const columns = [
     },
     {
         key: 'email', name: '이메일', fieldName: 'email', minWidth: 130, isResizeable: false
+    },
+    {
+        key: 'delete', name: "삭제", fieldName: "delete", minWidth: "50", isResizeable: false
     }
 ]
 
