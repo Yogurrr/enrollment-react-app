@@ -8,6 +8,7 @@ const EnrollmentForm = (props) => {
     const [firstName, setFirstName] = useState("");   // 인풋 태그에 작성했던 내용을 폼에 저장하기 위해
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
+
     // state형 변수에 저장된 이름/성을 환영메시지로 출력하기 위해 선언
     const [welcomeMessage, setWelcomeMessage] = useState("");
     const [msgStyle, setMsgStyle] = useState("redOne");
@@ -18,9 +19,7 @@ const EnrollmentForm = (props) => {
 
     const handleEdit = (key) => {
         // 수정할 학생 정보를 폼에 표시
-        setFirstName(firstName);
-        setLastName(lastName);
-        setEmail(email);
+        handleFormInput(firstName, lastName, email);
 
         setStudKey(key);
         setBtnValue('수정하기');
@@ -46,7 +45,7 @@ const EnrollmentForm = (props) => {
             // 생성한 key와 등록 완료된 학생정보를 props에 저장
             let stud = {
                 key: key, fname: firstName, lname: lastName, program: props.choosenProgram, email: email,
-                edit: <MdEdit className="actionIcon" onClick={ () => props.handleEdit(key) } />,
+                edit: <MdEdit className="actionIcon" onClick={ () => handleEdit(key) } />,
                 // 삭제 아이콘 클릭 시 대상 학생 정보의 키를 넘김
                 delete: <MdDelete className="actionIcon" onClick={() => props.handleItemSelection('delete', key)} />,
             }
@@ -59,12 +58,16 @@ const EnrollmentForm = (props) => {
         setInput(e.target.value)
     };
 
+    const handleFormInput = (fname, lname, email) => {
+        setFirstName(fname);
+        setLastName(lname);
+        setEmail(email);
+    };
+
     // 취소하기 버튼 클릭 시
     // 폼에 입력된 데이터 제거, 버튼의 글자 바꿈
     const handleCancel = (e) => {
-        setFirstName('');
-        setLastName('');
-        setEmail('');
+        handleFormInput('', '', '');
 
         setBtnValue('등록하기');
         e.preventDefault();
