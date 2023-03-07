@@ -64,6 +64,11 @@ const EnrollmentForm = (props) => {
     const handleInputChange = (setInput, e) => {
         setInput(e.target.value)
     };
+    // handleInputChange 함수는 input 요소의 값이 변경될 때마다 호출되어 input 요소의 값을 업데이트
+    // 이 함수는 useState를 통해 관리되는 상태를 업데이트하기 위해 setInput과 이벤트 객체 e를 매개변수로 받음
+    // setInput은 상태를 업데이트하기 위한 useState의 setter 함수입니다. e.target.value는 input 요소의 값으로,
+    // 이 값을 setInput을 통해 상태로 업데이트함
+    // 이렇게 함으로써 input 요소에 입력한 값을 상태로 관리할 수 있게 됨
 
     const handleFormInput = (fname, lname, email) => {
         setFirstName(fname);

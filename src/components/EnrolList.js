@@ -25,6 +25,9 @@ const columns = [
         key: 'delete', name: "삭제", fieldName: "delete", minWidth: "50", isResizeable: false
     }
 ]
+// 리스트 아이템을 구성하기 위해 columns 객체를 정의하고, 이를 사용하여 DetailsList 컴포넌트를 구성
+// 컴포넌트는 items와 columns 속성을 전달받음
+// columns는 DetailsList에 전달되는 컬럼의 속성을 정의하는 배열
 
 // 컬럼 정의 시 사용했던 fieldName으로 값 초기화
 let items = [];
@@ -40,7 +43,7 @@ const EnrolList = (props) => {
         if (props.action === 'delete' && confirm('정말로 삭제하시겠습니까?')) {
             // 삭제 대상 아이템을 키로 가져옴
             const deleteItem = items.filter(
-                (item) => item.key === props.selectedItemKey
+                (item) => item.key === props.selectedItemKey   // 선택된 item
             )[0];
             // 삭제 대상 아이템만 제외하고 다시 items 객체 생성 (찐 삭제가 아님)
             items = items.filter( (item) => item !== deleteItem );
@@ -56,12 +59,13 @@ const EnrolList = (props) => {
             // 전달받은 키와 리스트에서 일치하는 항목의 index를 알아냄
             const idx = items.findIndex( (item) => item.key === curItemKey );
 
-            if (idx > -1) {   // 키와 일치하는 항목이 리스트에 존재한다면
+            if (idx > -1) {   // 키와 일치하는 항목이 리스트에 존재한다면 (-1은 존재하지 않는 것)
                 // 수정하기로 간주하고 해당 항목에 대해 수정 작업 수행
                 items = items.map( (item) => item.key === curItemKey ? props.studDetails : item );
             } else {   // 키와 일치하는 항목이 리스트에 존재하지 않는다면
-                       // 등록하기로 가눚하고 해당 항목은 새로운 항목으로 취급
+                       // 등록하기로 간주하고 해당 항목은 새로운 항목으로 취급
                 items = [...items, props.studDetails];
+                // ...은 전개 연산자(spread operator)로, 배열 또는 객체를 펼쳐서 해당 요소들을 개별적인 요소로 분리시키는 역할
             }
             props.setStudDetails({});
         }
@@ -70,6 +74,7 @@ const EnrolList = (props) => {
     return (
         <div className="enrolList">
             <DetailsList items={items} columns={columns} />
+            {/* DetailsList는 Microsoft에서 제공하는 UI 라이브러리인 Fluent UI React의 컴포넌트 중 하나*/}
         </div>
     );
 };
